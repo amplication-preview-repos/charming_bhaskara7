@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+                 package tweet;
+service TweetService {
+ rpc createTweet (TweetCreateInput) returns (Tweet) {}
+rpc tweets (findManyParams) returns (stream Tweet) {}
+rpc tweet (TweetWhereUniqueInput) returns (Tweet) {}
+rpc updateTweet (TweetUpdateInput) returns (Tweet) {}
+rpc deleteTweet (TweetWhereUniqueInput) returns (Tweet) {}
+rpc findManyTweet (TweetWhereUniqueInput) returns (stream Comment) {}
+rpc updateTweet (CommentParams) returns (stream Comment) {}
+rpc connectTweet (CommentParams) returns (Comment) {}
+rpc disconnectTweet (CommentParams) returns (Comment) {}
+rpc findManyTweet (TweetWhereUniqueInput) returns (stream Like) {}
+rpc updateTweet (LikeParams) returns (stream Like) {}
+rpc connectTweet (LikeParams) returns (Like) {}
+rpc disconnectTweet (LikeParams) returns (Like) {} 
+ }
+message TweetCreateInput {
+repeated Comment comments = 1;
+string content = 2;
+string createdAt = 3;
+string id = 4;
+repeated Like likes = 5;
+string updatedAt = 6;
+};
+message Tweet {
+repeated Comment comments = 1;
+string content = 2;
+string createdAt = 3;
+string id = 4;
+repeated Like likes = 5;
+string updatedAt = 6;
+};
+message TweetWhereUniqueInput {
+repeated Comment comments = 1;
+string content = 2;
+string createdAt = 3;
+string id = 4;
+repeated Like likes = 5;
+string updatedAt = 6;
+};
+message TweetUpdateInput {
+repeated Comment comments = 1;
+string content = 2;
+string createdAt = 3;
+string id = 4;
+repeated Like likes = 5;
+string updatedAt = 6;
+};
+message findManyParams {
+
+};
+message Comment {
+string content = 1;
+string createdAt = 2;
+string id = 3;
+string updatedAt = 4;
+};
+message CommentWhereUniqueInput {
+string content = 1;
+string createdAt = 2;
+string id = 3;
+string updatedAt = 4;
+};
+message CommentParams {
+TweetWhereUniqueInput tweetWhereUniqueInput = 1;
+CommentWhereUniqueInput commentWhereUniqueInput = 2;
+};
+message Like {
+string createdAt = 1;
+string id = 2;
+string updatedAt = 3;
+};
+message LikeWhereUniqueInput {
+string createdAt = 1;
+string id = 2;
+string updatedAt = 3;
+};
+message LikeParams {
+TweetWhereUniqueInput tweetWhereUniqueInput = 1;
+LikeWhereUniqueInput likeWhereUniqueInput = 2;
+};
